@@ -6,14 +6,16 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <main
-      className="relative flex min-h-screen items-center justify-center bg-slate-900 bg-cover bg-center bg-fixed px-4 py-10 text-white"
+    {/* Fixed layer instead of background-attachment: fixed, which iOS Safari ignores */}
+    <div
+      className="fixed inset-0 -z-10 bg-slate-900 bg-cover bg-center"
       style={{ backgroundImage: `url(${background})` }}
+      aria-hidden="true"
     >
-      <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
-      <div className="relative">
-        <Donate />
-      </div>
+      <div className="absolute inset-0 bg-black/45 sm:bg-black/55" />
+    </div>
+    <main className="flex min-h-dvh flex-col items-center justify-center px-4 py-6 text-white sm:py-10">
+      <Donate />
     </main>
   </StrictMode>,
 )
